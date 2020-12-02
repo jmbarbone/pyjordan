@@ -88,3 +88,10 @@ def replace_all(text, dic):
         text = text.replace(i, j)
 
     return text
+
+
+def print_time(message):
+    from datetime import datetime
+    ts = datetime.now().strftime("%y-%m-%d %H:%M:%S")
+    print(f"[{ts}] {message}", flush=True)
+    return None
