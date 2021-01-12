@@ -42,3 +42,10 @@ def exists(x, where="local"):
         raise Warning("`where` should be one of: 'local', 'global', 'builtin'")
 
     return(res)
+
+
+def print_time(message):
+    from datetime import datetime
+    ts = datetime.now().strftime("%y-%m-%d %H:%M:%S")
+    print(f"[{ts}] {message}", flush=True)
+    return None
