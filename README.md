@@ -1,2 +1,3 @@
 # pyjordan
-Python functions and testing/learning and things
+
+Python functions and testing/learning and things.
