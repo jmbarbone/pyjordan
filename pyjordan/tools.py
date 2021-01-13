@@ -68,7 +68,6 @@ def round_by(x, by, method="round"):
     Returns
     -------
     A list of rounded numbers
-
     """
     from math import floor, ceil
 
