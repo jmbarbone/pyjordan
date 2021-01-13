@@ -49,3 +49,37 @@ def print_time(message):
     ts = datetime.now().strftime("%y-%m-%d %H:%M:%S")
     print(f"[{ts}] {message}", flush=True)
     return None
+
+
+def round_by(x, by, method="round"):
+    """ Round by
+
+    Rounds a number by another
+
+    Parameters
+    ----------
+    x : numeric
+        A number or list to round
+    by : numeric
+        The number or list by which to round
+    method : string
+        The method of rounding to use: round, ceiling, or floor
+
+    Returns
+    -------
+    A list of rounded numbers
+
+    """
+    from math import floor, ceil
+
+    if not isinstance(x, list):
+        x = [x]
+
+    if method == "round":
+        return [round(i / b) * b for i, b in zip(x, by)]
+    elif method == "ceiling":
+        return [ceil(i / b) * b for i, b in zip(x, by)]
+    elif method == "floor":
+        return [floor(i / b) * b for i, b in zip(x, by)]
+    else:
+        raise Exception('`by` must be one of: "round", "ceiling", "floor"')
