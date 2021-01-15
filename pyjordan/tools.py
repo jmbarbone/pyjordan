@@ -1,6 +1,18 @@
 
 
 def is_none(x):
+    """ Is none
+
+    True/False is value is None
+
+    Parameters
+    ----------
+    x : An object
+
+    Returns
+    -------
+    True if x is None, otherwise False
+    """
     x is None
 
 
@@ -44,16 +56,29 @@ def exists(x, where="local"):
     return(res)
 
 
-def print_time(message):
+def print_time(x):
+    """ Print the current
+
+    Description
+    -----------
+    Appends the current time into a print statement
+
+    Parameters
+    ----------
+    x : String
+        A message to be printed
+    """
     from datetime import datetime
     ts = datetime.now().strftime("%y-%m-%d %H:%M:%S")
-    print(f"[{ts}] {message}", flush=True)
+    print(f"[{ts}] {x}", flush=True)
     return None
 
 
 def round_by(x, by, method="round"):
     """ Round by
 
+    Description
+    -----------
     Rounds a number by another
 
     Parameters
@@ -71,14 +96,57 @@ def round_by(x, by, method="round"):
     """
     from math import floor, ceil
 
+    x = as_list(x)
+    by = as_list(by)
+
+    FUN = {
+        "round": round,
+        "ceiling": ceil,
+        "floor": floor,
+    }
+
+    if method not in ["round", "ceiling", "floor"]:
+        raise Exception('`by` must be one of: "round", "ceiling", "floor"')
+
+    try:
+        return [FUN[method](i / b) * b for b in by for i in x]
+    except KeyError:
+        raise Exception('`method` must be one of: "round", "ceiling", "floor"')
+
+
+def unnest(x):
+    """ Unnest
+
+    Description
+    -----------
+    Unnests a list of lists
+
+    Parameters
+    ----------
+    x : list
+        A list to be unnested
+
+    Returns
+    -------
+    The values of `x` as separate elements
+
+    Examples
+    --------
+    x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    unnest(x) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    x = [[1], [2, [3, 4]]]
+    unnest(x) # [1, 2, 3, 4]
+    """
+    res = [j for i in as_list(x) for j in as_list(i)]
+
+    while any([isinstance(i, list) for i in res]):
+        res = unnest(res)
+
+    return res
+
+
+def as_list(x):
     if not isinstance(x, list):
         x = [x]
-
-    if method == "round":
-        return [round(i / b) * b for i, b in zip(x, by)]
-    elif method == "ceiling":
-        return [ceil(i / b) * b for i, b in zip(x, by)]
-    elif method == "floor":
-        return [floor(i / b) * b for i, b in zip(x, by)]
-    else:
-        raise Exception('`by` must be one of: "round", "ceiling", "floor"')
+    return x
