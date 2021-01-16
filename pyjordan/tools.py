@@ -13,7 +13,7 @@ def is_none(x):
     -------
     True if x is None, otherwise False
     """
-    x is None
+    return x is None
 
 
 def exists(x, where="local"):
@@ -150,3 +150,55 @@ def as_list(x):
     if not isinstance(x, list):
         x = [x]
     return x
+
+def which(x):
+    """ Which (is True)
+
+    Description
+    -----------
+    Returns a numeric list of which elements are True
+
+    Parameters
+    ----------
+    x : list, bool
+        A list of bools
+
+    Returns
+    -------
+    True or False
+
+    Examples
+    --------
+    which(True) # [0]
+    which([True, False, None, True, False]) # [0, 3]
+    """
+    x = as_list(x)
+    out = []
+    if not is_boolean(x):
+        raise ValueError("x must be boolean")
+    for i in range(0, len(x)):
+        if x[i]:
+            out.append(i)
+    return out
+
+
+def is_boolean(x):
+    """ Is boolean?
+
+    Description
+    -----------
+    Evaluates an object or list as boolean
+
+    Returns
+    -------
+    True or False
+
+    Examples
+    --------
+    is_boolean(True) # True
+    is_boolean([1, 2, True, False]) # False
+    is_boolean([True, None, False, True]) # True
+    """
+    if isinstance(x, list):
+        return all([is_boolean(i) for i in x])
+    return is_none(x) or isinstance(x, bool)
