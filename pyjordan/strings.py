@@ -1,17 +1,26 @@
 from pyjordan.tools import unnest, as_list
 
 
-def str_replace_all(text, dic):
+def str_replace_all(x, replacements):
     """ Dictionary replacements
 
-    Replaces strings found in dictionary
+    Description
+    -----------
+    Replaces strings found in dictionary.  The replacement is made in the order
+      in which the replacements in the dictionary are provided.  This opens up
+      opportunities for patterns created after serial replacement to be detected
+      and replaced again.
 
     Parameters
     ----------
-    text : string
+    x : string
         The text to replace
-    dic : dictionary
+    replacements : dictionary
         The dictionary of items to replace
+
+    Returns
+    -------
+    The same string passed with the text found substituted.
 
     Reference
     ---------
@@ -19,7 +28,8 @@ def str_replace_all(text, dic):
 
     Warnings
     --------
-    Python dictionaries don't have a reliable order for iteration. This solution only solves your problem if:
+    Python dictionaries don't have a reliable order for iteration. This solution
+      only solves your problem if:
     * order of replacements is irrelevant
     * it's ok for a replacement to change the results of previous replacements
 

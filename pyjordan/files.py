@@ -1,11 +1,24 @@
 def find_file(path, pattern):
 
     """File finder
+
+    Description
+    -----------
     Finds a file in the "path" directory that matches the "pattern"
-    Keyword arguments:
-    path -- the path of the file to look in
-    pattern -- a pattern to search for
-    Example:
+
+    Parameters
+    ----------
+    path : string
+        The path of the file to look in
+    pattern : string, regex
+        A pattern to search for
+
+    Returns
+    -------
+    A list of file paths that match the provided pattern
+
+    Examples
+    --------
     find_file("C:/Python/Python36", "*exe")
     """
 
@@ -29,13 +42,25 @@ def find_file(path, pattern):
 
 def find_file_recursive(path, pattern, tries=100):
     """File finder - recursive
+
+    Description
+    -----------
     Continues to search for a file for file with a certain number of tries.
     This is useful for when files are being downloaded and you want to check
-      every second.  After each trie the os waits a
-    Keyword arguments:
-    path -- the path of the file to look in
-    pattern -- a pattern to search for
-    tries -- the number of attempts to search for the file
+      every second.  After each ty the os waits a second
+
+    Parameters
+    ----------
+    path : string
+        The path of the file to look in
+    pattern : string, regex
+        A pattern to search for
+    tries : int
+        The number of attempts to search for the file
+
+    Returns
+    -------
+    A list of file paths that match the provided pattern
     """
 
     import time
