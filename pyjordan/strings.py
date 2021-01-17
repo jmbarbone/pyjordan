@@ -44,12 +44,12 @@ def str_replace_all(x, replacements):
 
     from collections import OrderedDict
 
-    dic = OrderedDict(dic)
+    replacements = OrderedDict(replacements)
 
-    for i, j in dic.items():
-        text = text.replace(i, j)
+    for i, j in replacements.items():
+        x = x.replace(i, j)
 
-    return text
+    return x
 
 
 def paste_combine(x, sep="", collate=True):
