@@ -190,6 +190,11 @@ def is_boolean(x):
     -----------
     Evaluates an object or list as boolean
 
+    Parameters
+    ----------
+    x : Object
+        An object to be evaluated as boolean.
+
     Returns
     -------
     True or False
