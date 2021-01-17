@@ -1,5 +1,5 @@
 import unittest
-from pyjordan.tools import round_by, unnest, is_boolean, which
+from pyjordan.tools import round_by, unnest, is_boolean, which, limit
 
 
 class TestRoundBy(unittest.TestCase):
@@ -43,3 +43,12 @@ class TestWhich(unittest.TestCase):
     def test_which(self):
         self.assertEqual(which(True), [0])
         self.assertEqual(which([True, True, None, False, True]), [0, 1, 4])
+
+
+class TestLimit(unittest.TestCase):
+    def test_limit(self):
+        x = [-2, -1, 0, 1, 2]
+        self.assertEqual(limit(x), x)
+        self.assertEqual(limit(x, lower=0), [0, 0, 0, 1, 2])
+        self.assertEqual(limit(x, upper=0), [-2, -1, 0, 0, 0])
+        self.assertEqual(limit(x, lower=1, upper=2), [1, 1, 1, 1, 2])

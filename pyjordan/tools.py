@@ -208,3 +208,45 @@ def is_boolean(x):
     if isinstance(x, list):
         return all([is_boolean(i) for i in x])
     return is_none(x) or isinstance(x, bool)
+
+
+def limit(x, lower=None, upper=None):
+    """Limit a list
+
+    Description
+    -----------
+    Limits a list of numbers by a lower and/or upper limit
+
+    Parameters
+    ----------
+    x : numeric list
+        A list of numeric elements which to compare to lower and upper
+    lower : numeric
+        A lower limit for `x`.  If `None` (default) will use `min(x)`
+    upper : numeric
+        An upper limit for `x`.  If `None` (default) will use `max(x)`
+
+    Returns
+    -------
+    A numeric list
+
+    Examples
+    --------
+    x = [3, 2, 1, 4, 5, -1, 4]
+    limit(x) # sample as x
+    limit(x, lower=0)
+    limit(x, lower=1, upper=3)
+    limit(x, upper=4)
+    """
+    x = as_list(x)
+
+    if is_none(lower):
+        lower = min(x)
+
+    if is_none(upper):
+        upper = max(x)
+
+    if lower > upper:
+        raise Exception("`lower` cannot be greater than `upper`")
+
+    return [lower if i < lower else upper if i > upper else i for i in x]
