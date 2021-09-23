@@ -130,6 +130,11 @@ def unnest(x):
     -------
     The values of `x` as separate elements
 
+    References
+    ----------
+    Adapted from flatten() but with improvements to continue unnesting with
+    multiple nesting statements. This can be seen with the second example below.
+
     Examples
     --------
     x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -137,6 +142,7 @@ def unnest(x):
 
     x = [[1], [2, [3, 4]]]
     unnest(x) # [1, 2, 3, 4]
+
     """
     res = [j for i in as_list(x) for j in as_list(i)]
 
@@ -150,6 +156,38 @@ def as_list(x):
     if not isinstance(x, list):
         x = [x]
     return x
+
+
+def flatten(x):
+    """
+    Flatten a list
+
+    Performs a single unnesting of a list.
+
+    Parameters
+    ----------
+    x : list
+        A list to be flattened
+
+    Returns
+    -------
+    The values of `x` but with a single unnesting
+
+    Referneces
+    ----------
+    https://stackoverflow.com/a/952952/12126576
+
+    Examples
+    --------
+    x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    flatten(x) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    # Not compatiable with different levels of nesting
+    # For this, use unnest()
+    x = [[1], [2, [3, 4]]]
+    flatten(x) # [1, 2, [3, 4]]
+    """
+    return [item for sublist in x for item in sublist]
 
 
 def which(x):
