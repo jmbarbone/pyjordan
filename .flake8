@@ -1,0 +1,25 @@
+[flake8]
+ignore =
+    # E203 whitespace before ':'\
+    # style
+    E203,
+    # W391 blank line at end of file
+    # prefered...
+    W391,
+    # E261 at least two spaces before inline comment
+    # lame
+    E261,
+    E203
+exclude = 
+    __init__.py,
+    .git,
+    .gitignore,
+    dist,
+    build,
+    README.md,
+    NEWS.md
+max-complexity = 10
+show-source = True
+statistics = True
+max-line-length = 150
+count = True
