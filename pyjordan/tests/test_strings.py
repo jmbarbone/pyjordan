@@ -1,5 +1,8 @@
 import unittest
-from pyjordan.strings import str_replace_all,  paste_combine
+from pyjordan.strings import (
+    str_replace_all,
+    paste_combine
+)
 
 
 class TestStrReplace(unittest.TestCase):

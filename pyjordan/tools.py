@@ -1,3 +1,5 @@
+import __builtin__
+import sys
 
 
 def is_none(x):
@@ -40,9 +42,6 @@ def exists(x, where="local"):
     ----------
     Adapted from: https://stackoverflow.com/a/6386015/12126576
     """
-
-    import __builtin__
-    import sys
 
     if where == "local":
         res = x in sys.getframe(1).f_locals
@@ -191,34 +190,31 @@ def flatten(x):
 
 
 def which(x):
-    """ Which (is True)
+    """
+    which
 
     Description
     -----------
-    Returns a numeric list of which elements are True
+    Find the index for True values in
 
-    Parameters
-    ----------
-    x : list, bool
-        A list of bools
+    Paramters
+    ---------
+    x : list
+        A list of boolean values
 
     Returns
     -------
-    True or False
+    res : list, int
+        A list of integer positions
 
     Examples
     --------
     which(True) # [0]
     which([True, False, None, True, False]) # [0, 3]
     """
-    x = as_list(x)
-    out = []
-    if not is_boolean(x):
-        raise ValueError("x must be boolean")
-    for i in range(0, len(x)):
-        if x[i]:
-            out.append(i)
-    return out
+
+    res = [i for i in range(len(as_list(x))) if x[i]]
+    return res
 
 
 def is_boolean(x):
@@ -287,4 +283,5 @@ def limit(x, lower=None, upper=None):
     if lower > upper:
         raise Exception("`lower` cannot be greater than `upper`")
 
-    return [lower if i < lower else upper if i > upper else i for i in x]
+    res = [lower if i < lower else upper if i > upper else i for i in x]
+    return res
