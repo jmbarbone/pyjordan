@@ -212,8 +212,8 @@ def which(x):
     which(True) # [0]
     which([True, False, None, True, False]) # [0, 3]
     """
-
-    res = [i for i in range(len(as_list(x))) if x[i]]
+    x = as_list(x)
+    res = [i for i in range(len(x)) if x[i]]
     return res
 
 
