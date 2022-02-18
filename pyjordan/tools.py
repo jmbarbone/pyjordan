@@ -1,4 +1,4 @@
-# import __builtin__
+import __builtin__
 import sys
 
 
