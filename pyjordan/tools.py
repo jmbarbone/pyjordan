@@ -1,4 +1,4 @@
-import __builtin__
+import builtins
 import sys
 
 
@@ -48,7 +48,7 @@ def exists(x, where="local"):
     elif where == "global":
         res = x in sys.getframe(1).f_globals
     elif where == "builtin":
-        res = x in vars(__builtin__)
+        res = x in builtins.vars
     else:
         raise Warning("`where` should be one of: 'local', 'global', 'builtin'")
 
