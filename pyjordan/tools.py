@@ -1,5 +1,6 @@
 import builtins
 import sys
+import platform
 
 
 def is_none(x):
@@ -285,3 +286,15 @@ def limit(x, lower=None, upper=None):
 
     res = [lower if i < lower else upper if i > upper else i for i in x]
     return res
+
+
+def is_windows() :
+    return platform.system() == "Windows"
+
+
+def is_linux() :
+    return platform.system() == "Linux"
+
+
+def is_mac() :
+    return platform.system() == "Darwin"
